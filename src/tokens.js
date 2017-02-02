@@ -6,6 +6,8 @@ class Token {
 }
 
 class NumberToken extends Token {
+  get priority() { return NumberToken.PRIORITY; }
+
   constructor(value, pos) {
     super(value, pos);
     this.number = parseFloat(value);
@@ -21,6 +23,8 @@ class NumberToken extends Token {
 }
 
 class AdditionToken extends Token {
+  get priority() { return AdditionToken.PRIORITY; }
+
   static parseToken(str, pos) {
     let match = str.match(/^\+/);
 
@@ -31,6 +35,8 @@ class AdditionToken extends Token {
 }
 
 class SubtractionToken extends Token {
+  get priority() { return SubtractionToken.PRIORITY; }
+
   static parseToken(str, pos) {
     let match = str.match(/^-/);
 
@@ -41,6 +47,8 @@ class SubtractionToken extends Token {
 }
 
 class MultiplicationToken extends Token {
+  get priority() { return MultiplicationToken.PRIORITY; }
+
   static parseToken(str, pos) {
     let match = str.match(/^\*/);
 
@@ -51,6 +59,8 @@ class MultiplicationToken extends Token {
 }
 
 class DivisionToken extends Token {
+  get priority() { return DivisionToken.PRIORITY; }
+
   static parseToken(str, pos) {
     let match = str.match(/^(\/|\\)/);
 
@@ -61,6 +71,8 @@ class DivisionToken extends Token {
 }
 
 class OpenBracketToken extends Token {
+  get priority() { return OpenBracketToken.PRIORITY; }
+
   static parseToken(str, pos) {
     let match = str.match(/^\(/);
 
@@ -71,6 +83,8 @@ class OpenBracketToken extends Token {
 }
 
 class CloseBracketToken extends Token {
+  get priority() { return CloseBracketToken.PRIORITY; }
+
   static parseToken(str, pos) {
     let match = str.match(/^\)/);
 
@@ -81,12 +95,12 @@ class CloseBracketToken extends Token {
 }
 
 SubtractionToken.PRIORITY = 0;
-AdditionToken.PRIORITY = 1;
-MultiplicationToken.PRIORITY = 2;
-DivisionToken.PRIORITY = 3;
-OpenBracketToken.PRIORITY = 4;
-CloseBracketToken.PRIORITY = 4;
-NumberToken.PRIORITY = 5;
+AdditionToken.PRIORITY = 0;
+MultiplicationToken.PRIORITY = 1;
+DivisionToken.PRIORITY = 2;
+OpenBracketToken.PRIORITY = 3;
+CloseBracketToken.PRIORITY = 3;
+NumberToken.PRIORITY = 4;
 
 module.exports = {
   SubtractionToken: SubtractionToken,
