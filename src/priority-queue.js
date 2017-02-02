@@ -24,3 +24,5 @@ class PriorityQueue {
     return null;
   }
 }
+
+module.exports = PriorityQueue;
