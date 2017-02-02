@@ -5,6 +5,21 @@ class Token {
   }
 }
 
+class NumberToken extends Token {
+  constructor(value, pos) {
+    super(value, pos);
+    this.number = parseFloat(value);
+  }
+
+  static parseToken(str, pos) {
+    let match = str.match(/^-?\d+(\.\d+)?/);
+
+    if (match) return new NumberToken(match[0], pos);
+
+    return null;
+  }
+}
+
 class AdditionToken extends Token {
   static parseToken(str, pos) {
     let match = str.match(/^\+/);
@@ -71,6 +86,7 @@ MultiplicationToken.PRIORITY = 2;
 DivisionToken.PRIORITY = 3;
 OpenBracketToken.PRIORITY = 4;
 CloseBracketToken.PRIORITY = 4;
+NumberToken.PRIORITY = 5;
 
 module.exports = {
   SubtractionToken: SubtractionToken,
@@ -79,12 +95,14 @@ module.exports = {
   DivisionToken: DivisionToken,
   OpenBracketToken: OpenBracketToken,
   CloseBracketToken: CloseBracketToken,
+  NumberToken: NumberToken,
   prioritisedTokens: [
     SubtractionToken,
     AdditionToken,
     MultiplicationToken,
     DivisionToken,
     OpenBracketToken,
-    CloseBracketToken
+    CloseBracketToken,
+    NumberToken
   ].sort((a, b) => b.PRIORITY - a.PRIORITY)
 };
