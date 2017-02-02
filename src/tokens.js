@@ -1,7 +1,11 @@
 class Token {
   constructor(value, pos) {
     this.value = value;
+    this.length = value.length;
     this.pos = pos;
+    this.processed = false;
+    this.next = null;
+    this.prev = null;
   }
 }
 
@@ -11,6 +15,7 @@ class NumberToken extends Token {
   constructor(value, pos) {
     super(value, pos);
     this.number = parseFloat(value);
+    this.processed = true;
   }
 
   static parseToken(str, pos) {
