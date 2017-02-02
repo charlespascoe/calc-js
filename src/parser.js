@@ -70,6 +70,11 @@ class Parser {
     return queue;
   }
 
+  calculate(input) {
+    let queue = this.tokenise(input);
+    return this.evaluate(queue).number;
+  }
+
   evaluate(queue) {
     let result;
 
