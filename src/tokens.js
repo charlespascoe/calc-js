@@ -27,7 +27,9 @@ class NumberToken extends Token {
   }
 }
 
-class AdditionToken extends Token {
+class BinaryOperationToken extends Token { }
+
+class AdditionToken extends BinaryOperationToken {
   get priority() { return AdditionToken.PRIORITY; }
 
   static parseToken(str, pos) {
@@ -37,9 +39,13 @@ class AdditionToken extends Token {
 
     return null;
   }
+
+  evaluate() {
+    return this.prev.number + this.next.number;
+  }
 }
 
-class SubtractionToken extends Token {
+class SubtractionToken extends BinaryOperationToken {
   get priority() { return SubtractionToken.PRIORITY; }
 
   static parseToken(str, pos) {
@@ -49,9 +55,13 @@ class SubtractionToken extends Token {
 
     return null;
   }
+
+  evaluate() {
+    return this.prev.number - this.next.number;
+  }
 }
 
-class MultiplicationToken extends Token {
+class MultiplicationToken extends BinaryOperationToken {
   get priority() { return MultiplicationToken.PRIORITY; }
 
   static parseToken(str, pos) {
@@ -61,9 +71,13 @@ class MultiplicationToken extends Token {
 
     return null;
   }
+
+  evaluate() {
+    return this.prev.number * this.next.number;
+  }
 }
 
-class DivisionToken extends Token {
+class DivisionToken extends BinaryOperationToken {
   get priority() { return DivisionToken.PRIORITY; }
 
   static parseToken(str, pos) {
@@ -72,6 +86,10 @@ class DivisionToken extends Token {
     if (match) return new DivisionToken(match[0], pos);
 
     return null;
+  }
+
+  evaluate() {
+    return this.prev.number / this.next.number;
   }
 }
 
@@ -115,6 +133,7 @@ module.exports = {
   OpenBracketToken: OpenBracketToken,
   CloseBracketToken: CloseBracketToken,
   NumberToken: NumberToken,
+  BinaryOperationToken: BinaryOperationToken,
   prioritisedTokens: [
     SubtractionToken,
     AdditionToken,
