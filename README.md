@@ -7,6 +7,7 @@ Usage
 -----
 
 `$ node src/index.js '3 + (2 * 10) / 5'`
+
 `3 + (2 * 10) / 5 = 7`
 
 Notes
