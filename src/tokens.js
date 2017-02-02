@@ -9,7 +9,7 @@ class AdditionToken extends Token {
   static parseToken(str, pos) {
     let match = str.match(/^\+/);
 
-    if (match) return new AdditionToken(match, pos);
+    if (match) return new AdditionToken(match[0], pos);
 
     return null;
   }
@@ -19,7 +19,7 @@ class SubtractionToken extends Token {
   static parseToken(str, pos) {
     let match = str.match(/^-/);
 
-    if (match) return new SubtractionToken(match, pos);
+    if (match) return new SubtractionToken(match[0], pos);
 
     return null;
   }
@@ -29,7 +29,7 @@ class MultiplicationToken extends Token {
   static parseToken(str, pos) {
     let match = str.match(/^\*/);
 
-    if (match) return new MultiplicationToken(match, pos);
+    if (match) return new MultiplicationToken(match[0], pos);
 
     return null;
   }
@@ -39,7 +39,7 @@ class DivisionToken extends Token {
   static parseToken(str, pos) {
     let match = str.match(/^(\/|\\)/);
 
-    if (match) return new DivisionToken(match, pos);
+    if (match) return new DivisionToken(match[0], pos);
 
     return null;
   }
@@ -49,7 +49,7 @@ class OpenBracketToken extends Token {
   static parseToken(str, pos) {
     let match = str.match(/^\(/);
 
-    if (match) return new OpenBracketToken(match, pos);
+    if (match) return new OpenBracketToken(match[0], pos);
 
     return null;
   }
@@ -59,7 +59,7 @@ class CloseBracketToken extends Token {
   static parseToken(str, pos) {
     let match = str.match(/^\)/);
 
-    if (match) return new CloseBracketToken(match, pos);
+    if (match) return new CloseBracketToken(match[0], pos);
 
     return null;
   }
