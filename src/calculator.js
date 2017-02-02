@@ -21,7 +21,7 @@ class Result {
   }
 }
 
-class Parser {
+class Calculator {
   tokenise(input) {
     let queue = new PriorityQueue();
 
@@ -186,4 +186,4 @@ class Parser {
   }
 }
 
-module.exports = Parser;
+module.exports = Calculator;
