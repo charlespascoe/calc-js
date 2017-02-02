@@ -1,10 +1,9 @@
 const ParsingError = require('./parsing-error');
 const Calculator = require('./calculator');
 
+let input = process.argv.splice(2).join(' ');
 try {
   let c = new Calculator();
-  let input = process.argv.splice(2).join(' ');
-
   console.log(input + ' = ' + c.calculate(input));
 } catch (err) {
   if (err instanceof ParsingError) {
