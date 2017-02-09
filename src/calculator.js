@@ -25,7 +25,7 @@ const TOKEN_COMPARATOR = (token1, token2) => {
   if (token1.priority != token2.priority) return token1.priority - token2.priority;
   // If same priority, order by position left to right
   return token2.pos - token1.pos;
-}
+};
 
 class Calculator {
   tokenise(input) {
