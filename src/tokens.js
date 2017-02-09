@@ -109,6 +109,22 @@ class ExponentiationToken extends BinaryOperationToken {
   }
 }
 
+class ModuloToken extends BinaryOperationToken {
+  get priority() { return ModuloToken.PRIORITY; }
+
+  static parseToken(str, pos) {
+    let match = str.match(/^%/);
+
+    if (match) return new ModuloToken(match[0], pos);
+
+    return null;
+  }
+
+  evaluate() {
+    return this.prev.number % this.next.number;
+  }
+}
+
 class OpenBracketToken extends Token {
   get priority() { return OpenBracketToken.PRIORITY; }
 
@@ -136,7 +152,7 @@ class CloseBracketToken extends Token {
 let priority = 0;
 SubtractionToken.PRIORITY = AdditionToken.PRIORITY = priority++;
 MultiplicationToken.PRIORITY = priority++;
-DivisionToken.PRIORITY = priority++;
+DivisionToken.PRIORITY = ModuloToken.PRIORITY = priority++;
 ExponentiationToken.PRIORITY = priority++;
 OpenBracketToken.PRIORITY = CloseBracketToken.PRIORITY = priority++;
 NumberToken.PRIORITY = priority++;
@@ -146,6 +162,7 @@ module.exports = {
   AdditionToken: AdditionToken,
   MultiplicationToken: MultiplicationToken,
   DivisionToken: DivisionToken,
+  ModuloToken: ModuloToken,
   OpenBracketToken: OpenBracketToken,
   CloseBracketToken: CloseBracketToken,
   NumberToken: NumberToken,
@@ -156,6 +173,7 @@ module.exports = {
     AdditionToken,
     MultiplicationToken,
     DivisionToken,
+    ModuloToken,
     ExponentiationToken,
     OpenBracketToken,
     CloseBracketToken,
