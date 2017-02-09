@@ -21,9 +21,11 @@ class Result {
   }
 }
 
+const TOKEN_COMPARATOR = (token1, token2) => token1.priority - token2.priority;
+
 class Calculator {
   tokenise(input) {
-    let queue = new PriorityQueue();
+    let queue = new PriorityQueue(TOKEN_COMPARATOR);
 
     let str = input,
         pos = 0,
@@ -37,7 +39,7 @@ class Calculator {
         let token = tokenType.parseToken(str, pos);
 
         if (token) {
-          queue.add(tokenType.PRIORITY, token);
+          queue.add(token);
 
           str = str.substr(token.length);
 
@@ -132,7 +134,7 @@ class Calculator {
 
   parseBrackets(openBracketToken) {
     let token = openBracketToken.next,
-        queue = new PriorityQueue(),
+        queue = new PriorityQueue(TOKEN_COMPARATOR),
         length = 0,
         bracketDepth = 0;
 
@@ -177,7 +179,7 @@ class Calculator {
 
       length += token.length;
 
-      queue.add(token.priority, token);
+      queue.add(token);
 
       token = token.next;
     }
