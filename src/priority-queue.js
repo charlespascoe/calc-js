@@ -47,9 +47,12 @@ class PriorityQueue {
     this.heap[index] = item;
     this.heapSize++;
 
-    while (index > 0 && this.comparator(this.heap[index], this.heap[this.parentIndex(index)]) > 0) {
-      this.swap(index, this.parentIndex(index));
-      index = this.parentIndex(index);
+    let parentIndex = this.parentIndex(index);
+
+    while (index > 0 && this.comparator(this.heap[index], this.heap[parentIndex]) > 0) {
+      this.swap(index, parentIndex);
+      index = parentIndex;
+      parentIndex = this.parentIndex(index);
     }
   }
 
